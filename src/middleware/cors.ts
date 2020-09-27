@@ -2,8 +2,7 @@ import express from 'express';
 
 const allowedOrigins = [
     'http://localhost:8100',
-    'https://status-api-dev.web.app',
-    'https://status-api.com',
+    'https://stormy-cliffs-90695.herokuapp.com',
 ];
 
 export const register = (app: express.Express) => {
