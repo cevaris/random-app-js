@@ -1,8 +1,11 @@
 // create an express app
-import express from "express"
+import express from "express";
 import { v4 as uuidV4 } from "uuid";
+import * as cors from './middleware/cors';
 
-const app = express()
+const app = express();
+
+cors.register(app);
 
 // define the first route
 app.get("/", function (req, res) {
