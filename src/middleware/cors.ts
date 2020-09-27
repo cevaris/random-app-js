@@ -2,7 +2,7 @@ import express from 'express';
 
 const allowedOrigins = [
     'http://localhost:8100',
-    'https://stormy-cliffs-90695.herokuapp.com',
+    'https://randomapp-b753b.web.app',
 ];
 
 export const register = (app: express.Express) => {
