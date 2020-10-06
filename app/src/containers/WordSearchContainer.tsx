@@ -1,7 +1,7 @@
 import { IonCol, IonGrid, IonList, IonRow, IonSearchbar } from '@ionic/react';
 import React from 'react';
 import { Word } from '../types';
-import WordSearchItem from './WordSearchItem';
+import WordSearchItem from '../components/WordSearchItem';
 
 interface WordSearchProps {
     words: Word[],

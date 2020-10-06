@@ -1,4 +1,4 @@
-import { IonCol, IonGrid, IonItem, IonLabel, IonNote, IonRow } from '@ionic/react';
+import { IonItem, IonLabel } from '@ionic/react';
 import React from 'react';
 import { Word } from '../types';
 
