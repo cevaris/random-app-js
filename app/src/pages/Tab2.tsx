@@ -1,9 +1,22 @@
-import React from 'react';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
+import React, { useState } from 'react';
+import WordSearchContainer from '../components/WordSearchContainer';
 import './Tab2.css';
 
+
 const Tab2: React.FC = () => {
+  const [words, setWords] = useState<string[]>([]);
+
+  const setSearchText = async (query: string) => {
+    console.log('typed: ' + query);
+    const results = await Promise.resolve([
+      'hello',
+      'world',
+      'momba',
+    ]);
+    setWords(results);
+  };
+
   return (
     <IonPage>
       <IonHeader>
@@ -12,15 +25,10 @@ const Tab2: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Tab 2</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <ExploreContainer name="Tab 2 page" />
+        <WordSearchContainer words={words} setSearchText={setSearchText} />
       </IonContent>
-    </IonPage>
+    </IonPage >
   );
-};
+}
 
 export default Tab2;
