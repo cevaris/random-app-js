@@ -21,7 +21,7 @@ app.get("/words.json", function (req, res) {
     if (req.query.q && typeof (req.query.q) === 'string') {
         const query: string = req.query.q;
         const words = dictionary.filter(w => w.word.includes(query));
-        return res.json({ words: words });
+        return res.json(words);
     }
     res.json({ message: 'missing query paramter' });
 })
