@@ -3,13 +3,12 @@ import React from 'react';
 import { Word } from '../types';
 
 interface WordSearchItemProps {
-    word: Word,
-    idx: number
+    word: Word
 }
 
 const WordSearchItem: React.FC<WordSearchItemProps> = (props) => {
     return (
-        <IonItem key={props.idx}>
+        <IonItem>
             <IonLabel>
                 <h1>{props.word.word}</h1>
                 <div>{props.word.definition}</div>

@@ -30,7 +30,7 @@ const WordSearchContainer: React.FC<WordSearchProps> = (props) => {
                 <IonCol size="10">
                     <IonList lines="full">
                         {words && words.map((word, idx) =>
-                            <WordSearchItem word={word} idx={idx} />
+                            <WordSearchItem word={word} key={idx} />
                         )}
                     </IonList>
                 </IonCol>
