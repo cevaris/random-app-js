@@ -25,13 +25,10 @@ import { book, home, infinite } from 'ionicons/icons';
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import HomeTab from './pages/HomeTab';
-import RandomTab from './pages/Random';
+import RandomTab from './pages/RandomTab';
 import WordSearchTab from './pages/WordSearchTab';
 /* Theme variables */
 import './theme/variables.css';
-
-
-
 
 
 const App: React.FC = () => (

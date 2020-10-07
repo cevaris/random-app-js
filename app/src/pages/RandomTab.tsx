@@ -1,22 +1,22 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import React from 'react';
-import ExploreContainer from '../containers/ExploreContainer';
+import RandomContainer from '../containers/RandomContainer';
 
 const RandomTab: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Home</IonTitle>
+          <IonTitle>Random</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">Home</IonTitle>
+            <IonTitle size="large">Random</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <ExploreContainer name="Random" />
+        <RandomContainer />
       </IonContent>
     </IonPage>
   );
