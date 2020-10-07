@@ -25,17 +25,19 @@ const WordSearchContainer: React.FC<WordSearchProps> = (props) => {
                 </IonCol>
                 <IonCol size="1"></IonCol>
             </IonRow>
-            <IonRow>
-                <IonCol size="1"></IonCol>
-                <IonCol size="10">
-                    <IonList lines="full">
-                        {words && words.map((word, idx) =>
-                            <WordSearchItem word={word} key={idx} />
-                        )}
-                    </IonList>
-                </IonCol>
-                <IonCol size="1"></IonCol>
-            </IonRow>
+            { words.length > 0 &&
+                <IonRow>
+                    <IonCol size="1"></IonCol>
+                    <IonCol size="10">
+                        <IonList lines="full">
+                            {words.map((word, idx) =>
+                                <WordSearchItem word={word} key={idx} />
+                            )}
+                        </IonList>
+                    </IonCol>
+                    <IonCol size="1"></IonCol>
+                </IonRow>
+            }
         </IonGrid>
     );
 };

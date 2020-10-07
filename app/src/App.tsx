@@ -21,10 +21,11 @@ import '@ionic/react/css/structure.css';
 import '@ionic/react/css/text-alignment.css';
 import '@ionic/react/css/text-transformation.css';
 import '@ionic/react/css/typography.css';
-import { ellipse, triangle } from 'ionicons/icons';
+import { book, home, infinite } from 'ionicons/icons';
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import HomeTab from './pages/HomeTab';
+import RandomTab from './pages/Random';
 import WordSearchTab from './pages/WordSearchTab';
 /* Theme variables */
 import './theme/variables.css';
@@ -40,16 +41,21 @@ const App: React.FC = () => (
         <IonRouterOutlet>
           <Route path="/home" component={HomeTab} exact={true} />
           <Route path="/dictionary" component={WordSearchTab} exact={true} />
+          <Route path="/random" component={RandomTab} exact={true} />
           <Route path="/" render={() => <Redirect to="/home" />} exact={true} />
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
           <IonTabButton tab="home" href="/home">
-            <IonIcon icon={triangle} />
+            <IonIcon icon={home} />
             <IonLabel>Home</IonLabel>
           </IonTabButton>
           <IonTabButton tab="dictionary" href="/dictionary">
-            <IonIcon icon={ellipse} />
+            <IonIcon icon={book} />
             <IonLabel>Dictionary</IonLabel>
+          </IonTabButton>
+          <IonTabButton tab="random" href="/random">
+            <IonIcon icon={infinite} />
+            <IonLabel>Random</IonLabel>
           </IonTabButton>
         </IonTabBar>
       </IonTabs>
