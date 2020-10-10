@@ -2,11 +2,15 @@ import { IonButton, IonCol, IonGrid, IonInput, IonItem, IonLabel, IonRow } from 
 import React from "react";
 import { Controller, useForm } from 'react-hook-form';
 
-const RandomContainer: React.FC = () => {
-    const { control, handleSubmit } = useForm();
+interface IFormInputs {
+    email: string
+}
 
-    const registerUser = (data: any) => {
-        console.log('creating a new user account with: ', data);
+const RandomContainer: React.FC = () => {
+    const { control, register, handleSubmit } = useForm();
+
+    function onSubmit(data: IFormInputs) {
+        console.log(data); // { username: 'test', email: 'test', password: 'test' }
     }
 
     return (
@@ -14,19 +18,19 @@ const RandomContainer: React.FC = () => {
             <IonRow>
                 <IonCol size="3"></IonCol>
                 <IonCol>
-                    <form onSubmit={handleSubmit(registerUser)}>
+                    <form onSubmit={handleSubmit(onSubmit)}>
+
                         <IonItem>
-                            <IonLabel position="floating">Random</IonLabel>
+                            <IonLabel position="floating">Email</IonLabel>
                             <Controller
-                                as={<IonInput type="number" />}
-                                name="name"
-                                defaultValue=""
+                                as={<IonInput type="email" ref={register} />}
+                                name="email"
                                 control={control}
                                 onChangeName="onIonChange"
                             />
                         </IonItem>
                         <IonButton expand="block" type="submit" className="ion-margin-top">
-                            Random
+                            Register
                         </IonButton>
                     </form>
                 </IonCol>
