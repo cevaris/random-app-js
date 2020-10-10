@@ -10,8 +10,8 @@ interface RandomStringFormProps {
 }
 
 const RandomStringForm: React.FC<RandomStringFormProps> = () => {
-    const { control, register, handleSubmit } = useForm<IFormInputs>();
     const [randomString, setRandomString] = useState('');
+    const { control, register, handleSubmit } = useForm<IFormInputs>({});
 
     const onSubmit = async (data: IFormInputs) => {
         const result = await getRandomString(data.length);
@@ -21,16 +21,16 @@ const RandomStringForm: React.FC<RandomStringFormProps> = () => {
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <IonItem>
-                <IonLabel position="stacked">Length of random string</IonLabel>
+                <IonLabel>Length of random string:</IonLabel>
                 <Controller
                     as={<IonInput type="number" ref={register} />}
                     name="length"
-                    defaultValue=""
+                    defaultValue=''
                     control={control}
                 />
             </IonItem>
             <IonItem>
-                <IonInput value={randomString} />
+                <IonInput value={randomString} readonly={true} />
             </IonItem>
             <IonButton expand="block" type="submit" className="ion-margin-top">
                 Generate Random String
