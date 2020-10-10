@@ -34,6 +34,19 @@ router.get("/random/number.json", function (req: express.Request, res: express.R
     res.json({ value: randNumber });
 });
 
+router.get("/random/choose.json", function (req: express.Request, res: express.Response) {
+    if (!req.query.data) {
+        return res.status(400).json({ ok: false, message: 'missing data query parameter' });
+    }
+    const data = (req.query.data as string).split(',');
+
+    if (data.length > 1) {
+        res.json({ value: data[Math.floor(Math.random() * data.length)] });
+    } else {
+        res.json({ value: data[0] });
+    }
+});
+
 module.exports = router;
 
 function randString(length: number) {
