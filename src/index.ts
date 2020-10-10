@@ -1,10 +1,10 @@
 // create an express app
 import express from "express";
-import * as cors from './middleware/cors';
+
 
 const app = express();
 
-cors.register(app);
+app.use(require('./middleware/cors'));
 
 app.use(require('./routes/index'));
 app.use(require('./routes/random'));
