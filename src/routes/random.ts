@@ -2,15 +2,9 @@ import express from "express";
 
 const router = express.Router();
 
-interface Request extends express.Request {
-    query: {
-        length?: string
-    }
-}
-
-router.get("/random/string.json", function (req: Request, res: express.Response) {
+router.get("/random/string.json", function (req: express.Request, res: express.Response) {
     const defaultLength = 10;
-    const length = parseInt(req.query.length || defaultLength.toString());
+    const length = parseInt(req.query.length as string || defaultLength.toString());
     res.json({ value: randString(length) });
 });
 
