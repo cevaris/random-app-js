@@ -5,7 +5,7 @@ const router = express.Router();
 router.get("/random/string.json", function (req: express.Request, res: express.Response) {
     const defaultLength = 10;
     const length = parseInt(req.query.length as string || defaultLength.toString());
-    res.json({ value: randString(length) });
+    res.json({ ok: true, value: randString(length) });
 });
 
 router.get("/random/number.json", function (req: express.Request, res: express.Response) {
@@ -31,7 +31,7 @@ router.get("/random/number.json", function (req: express.Request, res: express.R
     }
 
     const randNumber = Math.random() * (max - min) + min;
-    res.json({ value: randNumber });
+    res.json({ ok: true, value: randNumber });
 });
 
 router.get("/random/choose.json", function (req: express.Request, res: express.Response) {
@@ -41,9 +41,9 @@ router.get("/random/choose.json", function (req: express.Request, res: express.R
     const data = (req.query.data as string).split(',');
 
     if (data.length > 1) {
-        res.json({ value: data[Math.floor(Math.random() * data.length)] });
+        res.json({ ok: true, value: data[Math.floor(Math.random() * data.length)] });
     } else {
-        res.json({ value: data[0] });
+        res.json({ ok: true, value: data[0] });
     }
 });
 

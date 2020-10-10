@@ -1,6 +1,7 @@
 import { IonButton, IonInput, IonItem, IonLabel } from '@ionic/react';
-import React from 'react';
+import React, { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
+import { getRandomString } from '../actions/random';
 
 interface IFormInputs {
     length: number
@@ -8,11 +9,13 @@ interface IFormInputs {
 interface RandomStringFormProps {
 }
 
-const RandomStringForm: React.FC<RandomStringFormProps> = (props) => {
+const RandomStringForm: React.FC<RandomStringFormProps> = () => {
     const { control, register, handleSubmit } = useForm<IFormInputs>();
+    const [randomString, setRandomString] = useState('');
 
     const onSubmit = async (data: IFormInputs) => {
-        console.log(`/random/string.json?length=${data.length}`);
+        const result = await getRandomString(data.length);
+        setRandomString(result);
     };
 
     return (
@@ -22,11 +25,15 @@ const RandomStringForm: React.FC<RandomStringFormProps> = (props) => {
                 <Controller
                     as={<IonInput type="number" ref={register} />}
                     name="length"
+                    defaultValue=""
                     control={control}
                 />
             </IonItem>
+            <IonItem>
+                <IonInput value={randomString} />
+            </IonItem>
             <IonButton expand="block" type="submit" className="ion-margin-top">
-                Submit
+                Generate Random
             </IonButton>
         </form>
     );

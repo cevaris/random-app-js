@@ -2,7 +2,7 @@ import { IonCol, IonGrid, IonList, IonRow, IonSearchbar } from '@ionic/react';
 import axios from 'axios';
 import React, { useState } from 'react';
 import WordSearchItem from '../components/WordSearchItem';
-import { environment } from '../envrionment';
+import { environment } from '../environment';
 import { Word } from '../types';
 
 interface WordSearchProps { }
