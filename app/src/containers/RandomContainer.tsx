@@ -10,7 +10,7 @@ const RandomContainer: React.FC = () => {
     const { control, register, handleSubmit } = useForm();
 
     function onSubmit(data: IFormInputs) {
-        console.log(data); // { username: 'test', email: 'test', password: 'test' }
+        console.log(data);
     }
 
     return (
@@ -21,12 +21,11 @@ const RandomContainer: React.FC = () => {
                     <form onSubmit={handleSubmit(onSubmit)}>
 
                         <IonItem>
-                            <IonLabel position="floating">Email</IonLabel>
+                            <IonLabel position="floating">Random Number</IonLabel>
                             <Controller
                                 as={<IonInput type="email" ref={register} />}
                                 name="email"
                                 control={control}
-                                onChangeName="onIonChange"
                             />
                         </IonItem>
                         <IonButton expand="block" type="submit" className="ion-margin-top">
