@@ -8,6 +8,13 @@ interface Result {
 const ApiHost = environment.apiHost;
 
 export const getRandomString = async (length: number): Promise<string> => {
-    const result = await axios.get<Result>(`${ApiHost}/random/string.json?length=${length}`);
+    const url = `${ApiHost}/random/string.json?length=${length}`;
+    const result = await axios.get<Result>(url);
+    return result.data.value;
+}
+
+export const getRandomNumber = async (min: number, max: number): Promise<string> => {
+    const url = `${ApiHost}/random/number.json?min=${min}&max=${max}`;
+    const result = await axios.get<Result>(url);
     return result.data.value;
 }

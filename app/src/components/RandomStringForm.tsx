@@ -21,7 +21,7 @@ const RandomStringForm: React.FC<RandomStringFormProps> = () => {
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <IonItem>
-                <IonLabel position="stacked">Random Number</IonLabel>
+                <IonLabel position="stacked">Length of random string</IonLabel>
                 <Controller
                     as={<IonInput type="number" ref={register} />}
                     name="length"
@@ -33,7 +33,7 @@ const RandomStringForm: React.FC<RandomStringFormProps> = () => {
                 <IonInput value={randomString} />
             </IonItem>
             <IonButton expand="block" type="submit" className="ion-margin-top">
-                Generate Random
+                Generate Random String
             </IonButton>
         </form>
     );
