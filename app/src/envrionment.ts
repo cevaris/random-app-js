@@ -6,7 +6,7 @@ const prod = {
     apiHost: 'https://stormy-cliffs-90695.herokuapp.com'
 };
 const local = {
-    apiHost: 'http://localhost:3000'
+    apiHost: 'http://localhost:8080'
 };
 
 export const environment: Environment =
