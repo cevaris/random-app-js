@@ -1,5 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { IonButton, IonInput, IonItem, IonLabel, IonText } from '@ionic/react';
+import { IonButton, IonInput, IonItem, IonText } from '@ionic/react';
 import React, { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { number, object } from 'yup';
@@ -14,7 +14,20 @@ interface RandomNumberFormProps {
 }
 
 const RandomNumberForm: React.FC<RandomNumberFormProps> = () => {
-    // const [minNumber, setMin] = useState<number>();
+    // const [state, setState] = useState({
+    //     min: null,
+    //     max: null
+    // })
+
+    const handleChange = (e: any) => {
+        // const { id, value } = e.target
+
+        // console.log('new value', value);
+        // setState(prevState => ({
+        //     ...prevState,
+        //     [id]: value
+        // }));
+    };
 
     const validationSchema = object().shape({
         min: number().required('This field is required.'),
@@ -27,6 +40,7 @@ const RandomNumberForm: React.FC<RandomNumberFormProps> = () => {
     const [randomNumber, setRandomNumber] = useState('');
 
     const onSubmit = async (data: IFormInputs) => {
+        console.log('submission', data);
         const result = await getRandomNumber(data.min, data.max);
         setRandomNumber(result);
     };
@@ -34,30 +48,52 @@ const RandomNumberForm: React.FC<RandomNumberFormProps> = () => {
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <IonItem>
-                <IonLabel>Min Number:</IonLabel>
-                <Controller
-                    as={<IonInput type="text" ref={register} />}
+                <IonInput
+                    type="text"
+                    name="min"
+                    ref={register}
+                    placeholder={'Min Number'}
+                    onIonChange={handleChange}
+                />
+                {/* <Controller
+                    as={<IonInput type="text" name="min" ref={register} placeholder={'Min Number'} onIonChange={handleChange} />}
                     name="min"
                     defaultValue=""
+                    // defaultValue={state.min}
                     control={control}
+                    // onChange={handleChange}
                     onChangeName="onIonChange"
-                />
-
+                // rules={{
+                //     required: "This field is required."
+                // }}
+                /> */}
             </IonItem>
-            {errors && errors.min && (
+            {errors.min && (
                 <IonText color="danger" className="ion-padding-start">
                     <small>{errors.min.message}</small>
                 </IonText>
             )}
             <IonItem>
-                <IonLabel>Max Number:</IonLabel>
-                <Controller
-                    as={<IonInput type="text" ref={register} onChange={(e => { console.log(e) })} />}
+
+                <IonInput
+                    type="text"
+                    name="max"
+                    ref={register}
+                    placeholder={'Max Number'}
+                    onIonChange={handleChange}
+                />
+                {/* <Controller
+                    as={<IonInput type="text" name="max" ref={register} placeholder={'Max Number'} onIonChange={handleChange} />}
                     name="max"
                     defaultValue=""
+                    // defaultValue={state.max}
                     control={control}
+                    // onChange={handleChange}
                     onChangeName="onIonChange"
-                />
+                // rules={{
+                //     required: "This field is required."
+                // }}
+                /> */}
             </IonItem>
             {errors.max && (
                 <IonText color="danger" className="ion-padding-start">
