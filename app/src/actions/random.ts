@@ -29,3 +29,9 @@ export const getRandomNumber = async (min: number, max: number): Promise<string>
         }
     }
 }
+
+export const getRandomChoose = async (data: string): Promise<string> => {
+    const url = `${ApiHost}/random/choose.json?data=${data}`;
+    const result = await axios.get<Result>(url);
+    return result.data.value;
+}
