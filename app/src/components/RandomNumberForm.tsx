@@ -1,9 +1,10 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { IonButton, IonInput, IonItem, IonText } from '@ionic/react';
 import React, { useState } from 'react';
-import { Controller, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { number, object } from 'yup';
 import { getRandomNumber } from '../actions/random';
+
 
 interface IFormInputs {
     min: number
@@ -19,15 +20,23 @@ const RandomNumberForm: React.FC<RandomNumberFormProps> = () => {
         max: number().required('This field is required.'),
     });
 
-    const { control, register, handleSubmit, errors } = useForm<IFormInputs>({
-        resolver: yupResolver(validationSchema)
+    const { register, handleSubmit, errors, setError } = useForm<IFormInputs>({
+        resolver: yupResolver(validationSchema),
+        mode: 'onChange'
     });
     const [randomNumber, setRandomNumber] = useState('');
+    const [submitError, setSubmitError] = useState<Error | false>();
 
     const onSubmit = async (data: IFormInputs) => {
-        console.log('submission', data);
-        const result = await getRandomNumber(data.min, data.max);
-        setRandomNumber(result);
+        try {
+            // reset any errors
+            setSubmitError(false);
+            
+            const result = await getRandomNumber(data.min, data.max);
+            setRandomNumber(result);
+        } catch (error) {
+            setSubmitError(error);
+        }
     };
 
     return (
@@ -61,6 +70,11 @@ const RandomNumberForm: React.FC<RandomNumberFormProps> = () => {
             <IonItem>
                 <IonInput value={randomNumber} readonly={true} />
             </IonItem>
+            {submitError && (
+                <IonText color="danger" className="ion-padding-start">
+                    <small>{submitError.message}</small>
+                </IonText>
+            )}
             <IonButton expand="block" type="submit" className="ion-margin-top">
                 Generate Random Number
             </IonButton>

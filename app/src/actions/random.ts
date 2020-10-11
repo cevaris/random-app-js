@@ -1,7 +1,9 @@
 import axios from 'axios';
+import e from 'express';
 import { environment } from '../environment';
 
 interface Result {
+    ok: boolean
     value: string
 }
 
@@ -15,6 +17,15 @@ export const getRandomString = async (length: number): Promise<string> => {
 
 export const getRandomNumber = async (min: number, max: number): Promise<string> => {
     const url = `${ApiHost}/random/number.json?min=${min}&max=${max}`;
-    const result = await axios.get<Result>(url);
-    return result.data.value;
+    try {
+        const result = await axios.get<Result>(url);
+        return result.data.value;
+    } catch (error) {
+        const response = error.response.data as Result;
+        if (response) {
+            return Promise.reject(Error(error.response.data.message));
+        } else {
+            return Promise.reject(error);
+        }
+    }
 }

@@ -27,7 +27,7 @@ router.get("/random/number.json", function (req: express.Request, res: express.R
     }
 
     if (min > max) {
-        return res.status(400).json({ ok: false, message: `min ${min} cannot be greater than max ${max}` });
+        return res.status(400).json({ ok: false, message: `min value cannot be greater than max value` });
     }
 
     const randNumber = Math.random() * (max - min) + min;
