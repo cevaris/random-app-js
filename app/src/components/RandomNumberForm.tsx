@@ -14,21 +14,6 @@ interface RandomNumberFormProps {
 }
 
 const RandomNumberForm: React.FC<RandomNumberFormProps> = () => {
-    // const [state, setState] = useState({
-    //     min: null,
-    //     max: null
-    // })
-
-    const handleChange = (e: any) => {
-        // const { id, value } = e.target
-
-        // console.log('new value', value);
-        // setState(prevState => ({
-        //     ...prevState,
-        //     [id]: value
-        // }));
-    };
-
     const validationSchema = object().shape({
         min: number().required('This field is required.'),
         max: number().required('This field is required.'),
@@ -53,20 +38,7 @@ const RandomNumberForm: React.FC<RandomNumberFormProps> = () => {
                     name="min"
                     ref={register}
                     placeholder={'Min Number'}
-                    onIonChange={handleChange}
                 />
-                {/* <Controller
-                    as={<IonInput type="text" name="min" ref={register} placeholder={'Min Number'} onIonChange={handleChange} />}
-                    name="min"
-                    defaultValue=""
-                    // defaultValue={state.min}
-                    control={control}
-                    // onChange={handleChange}
-                    onChangeName="onIonChange"
-                // rules={{
-                //     required: "This field is required."
-                // }}
-                /> */}
             </IonItem>
             {errors.min && (
                 <IonText color="danger" className="ion-padding-start">
@@ -74,26 +46,12 @@ const RandomNumberForm: React.FC<RandomNumberFormProps> = () => {
                 </IonText>
             )}
             <IonItem>
-
                 <IonInput
                     type="text"
                     name="max"
                     ref={register}
                     placeholder={'Max Number'}
-                    onIonChange={handleChange}
                 />
-                {/* <Controller
-                    as={<IonInput type="text" name="max" ref={register} placeholder={'Max Number'} onIonChange={handleChange} />}
-                    name="max"
-                    defaultValue=""
-                    // defaultValue={state.max}
-                    control={control}
-                    // onChange={handleChange}
-                    onChangeName="onIonChange"
-                // rules={{
-                //     required: "This field is required."
-                // }}
-                /> */}
             </IonItem>
             {errors.max && (
                 <IonText color="danger" className="ion-padding-start">
