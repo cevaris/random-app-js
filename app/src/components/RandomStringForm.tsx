@@ -1,6 +1,8 @@
-import { IonButton, IonInput, IonItem, IonLabel } from '@ionic/react';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { IonButton, IonInput, IonItem, IonText } from '@ionic/react';
 import React, { useState } from 'react';
-import { Controller, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
+import { number, object } from 'yup';
 import { getRandomString } from '../actions/random';
 
 interface IFormInputs {
@@ -11,7 +13,13 @@ interface RandomStringFormProps {
 
 const RandomStringForm: React.FC<RandomStringFormProps> = () => {
     const [randomString, setRandomString] = useState('');
-    const { control, register, handleSubmit } = useForm<IFormInputs>({});
+    const validationSchema = object().shape({
+        length: number().required('This field is required.').min(1),
+    });
+
+    const { register, handleSubmit, errors } = useForm<IFormInputs>({
+        resolver: yupResolver(validationSchema)
+    });
 
     const onSubmit = async (data: IFormInputs) => {
         const result = await getRandomString(data.length);
@@ -21,14 +29,18 @@ const RandomStringForm: React.FC<RandomStringFormProps> = () => {
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <IonItem>
-                <IonLabel>Length of random string:</IonLabel>
-                <Controller
-                    as={<IonInput type="number" ref={register} />}
+                <IonInput
+                    type="text"
                     name="length"
-                    defaultValue=''
-                    control={control}
+                    ref={register}
+                    placeholder={'Length of random string Number'}
                 />
             </IonItem>
+            {errors.length && (
+                <IonText color="danger" className="ion-padding-start">
+                    <small>{errors.length.message}</small>
+                </IonText>
+            )}
             <IonItem>
                 <IonInput value={randomString} readonly={true} />
             </IonItem>

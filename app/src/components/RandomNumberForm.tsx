@@ -20,7 +20,7 @@ const RandomNumberForm: React.FC<RandomNumberFormProps> = () => {
         max: number().required('This field is required.'),
     });
 
-    const { register, handleSubmit, errors, setError } = useForm<IFormInputs>({
+    const { register, handleSubmit, errors } = useForm<IFormInputs>({
         resolver: yupResolver(validationSchema),
         mode: 'onChange'
     });
