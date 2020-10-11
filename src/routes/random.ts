@@ -3,8 +3,10 @@ import express from "express";
 const router = express.Router();
 
 router.get("/random/string.json", function (req: express.Request, res: express.Response) {
-    const defaultLength = 10;
-    const length = parseInt(req.query.length as string || defaultLength.toString());
+    if (!req.query.length) {
+        return res.status(400).json({ ok: false, message: 'missing length query parameter' });
+    }
+    const length = parseInt(req.query.length as string);
     res.json({ ok: true, value: randString(length) });
 });
 

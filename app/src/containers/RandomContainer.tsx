@@ -13,7 +13,7 @@ const RandomContainer: React.FC = () => {
                 </IonCol>
                 <IonCol size="3"></IonCol>
             </IonRow>
-            <IonRow>
+            <IonRow className="ion-margin-top">
                 <IonCol size="3"></IonCol>
                 <IonCol>
                     <RandomNumberForm />
