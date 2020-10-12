@@ -46,7 +46,8 @@ test('successfully submits value', async () => {
   // unmountComponentAtNode(container);
   // container.remove();
 
-  const input = await findByTitle('Input Length');
+  // const input = await findByTitle('Input Length');
+  const input = getByRole("text");
   // const input = await findByTestId('input-length');
 
   // fireEvent.ionChange(input, '33');
@@ -79,17 +80,24 @@ test('successfully submits value', async () => {
   //   detail: '5'
   // }));
 
+  // fireEvent.ionChange(input, new CustomEvent('ion-input', {
+  //   detail: '5'
+  // }));
+
   // console.log(baseElement);
 
   // fireEvent.ionChange(await screen.findByTestId('input-length'), '5');
-  fireEvent.ionChange(input, '5');
-  fireEvent.input(input, '5');
-  fireEvent.ionInput(input, '5');
+  fireEvent.ionChange(input, '55');
+  // fireEvent.change(input, '5');
+  // fireEvent.input(input, '5');
+  // fireEvent.ionInput(input, '5');
   // console.log(await screen.findByTestId('input-length'));
   // console.log(await findAllByTestId('input-length'));
   // console.log(await findByPlaceholderText('Length of random string Number'));
   // console.log(await screen.findByTitle('Length of random string Number'));
   fireEvent.submit(getByRole("button"));
+
+  debug(await findAllByRole("error"));
 
   expect(await findAllByRole("error")).toHaveLength(0);
   expect(getRandomStringMock).toBeCalled();

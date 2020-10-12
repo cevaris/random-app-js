@@ -15,6 +15,9 @@ const RandomStringForm: React.FC<RandomStringFormProps> = (props) => {
     const [randomString, setRandomString] = useState('');
     const validationSchema = object().shape({
         length: number().required('This field is required.').min(1),
+    }).test('test', 'hello', (data) => {
+        console.log('fired', data);
+        return true;
     });
 
     const { register, handleSubmit, errors } = useForm<IFormInputs>({
@@ -38,7 +41,8 @@ const RandomStringForm: React.FC<RandomStringFormProps> = (props) => {
                     role="text"
                     className='input-length'
                     placeholder={'Length of random string Number'}
-                    onIonChange={(e) => console.log(e.detail.value)}
+                    onChange={(e) => console.log('onChange', e.currentTarget.value)}
+                    onIonChange={(e) => console.log('onIonChange', e.detail.value)}
                 />
             </IonItem>
             {errors.length && (
