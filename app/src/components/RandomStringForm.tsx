@@ -34,15 +34,10 @@ const RandomStringForm: React.FC<RandomStringFormProps> = (props) => {
         <form onSubmit={handleSubmit(onSubmit)}>
             <IonItem >
                 <IonInput
-                    title="Input Length"
                     type="text"
                     name="length"
                     ref={register}
-                    role="text"
-                    className='input-length'
                     placeholder={'Length of random string Number'}
-                    onChange={(e) => console.log('onChange', e.currentTarget.value)}
-                    onIonChange={(e) => console.log('onIonChange', e.detail.value)}
                 />
             </IonItem>
             {errors.length && (
